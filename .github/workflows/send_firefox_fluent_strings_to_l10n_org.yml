@@ -16,13 +16,18 @@ on:
   #     - main
   workflow_dispatch:
   schedule:
-    - cron: "0 0/3 * * *" # Every 3 hours
+    - cron: "15 5 * * *" # Every 5:15 AM UTC
 
 jobs:
   open_l10n_pr:
     # if: github.repository == 'mozmeao/springfield'
     runs-on: ubuntu-latest
     steps:
+      - run: echo "Use commit/ref $GIT_SHA"
+        env:
+          GIT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/checkout@v4
-      - run: echo ${{ github.ref }}
+        with:
+          ref: ${{ env.GIT_SHA }}
+      - run: git shortlog HEAD..HEAD^
         #run: FLUENT_REPO_AUTH=${{ secrets.FLUENT_REPO_AUTH }} bin/open-ftl-pr.sh
