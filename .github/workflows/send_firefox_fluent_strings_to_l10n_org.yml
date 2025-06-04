@@ -23,11 +23,11 @@ jobs:
     # if: github.repository == 'mozmeao/springfield'
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Use commit/ref $GIT_SHA"
+      - run: echo "Use commit/ref $USE_SHA"
         env:
-          GIT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+          USE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/checkout@v4
         with:
-          ref: ${{ env.GIT_SHA }}
+          ref: ${{ env.USE_SHA }}
       - run: git shortlog HEAD..HEAD^
         #run: FLUENT_REPO_AUTH=${{ secrets.FLUENT_REPO_AUTH }} bin/open-ftl-pr.sh
