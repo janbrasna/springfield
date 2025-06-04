@@ -22,10 +22,10 @@ jobs:
   open_l10n_pr:
     # if: github.repository == 'mozmeao/springfield'
     runs-on: ubuntu-latest
+    env:
+      HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
     steps:
       - run: echo "Use commit/ref $HEAD_SHA"
-        env:
-          HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/checkout@v4
         with:
           ref: ${{ env.HEAD_SHA }}
