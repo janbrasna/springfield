@@ -4,21 +4,25 @@
 name: Open Fluent PR for Firefox.com
 
 on:
-  push:
-    paths:
-      - "l10n/**/*"
-    branches:
-      - main
+  workflow_run:
+    #workflows: ["Build and push a Docker image"]
+    workflows: ["Unit tests"]
+    types: [completed]
+    branches: [main]
+  # push:
+  #   paths:
+  #     - "l10n/**/*"
+  #   branches:
+  #     - main
   workflow_dispatch:
   schedule:
     - cron: "0 0/3 * * *" # Every 3 hours
 
 jobs:
   open_l10n_pr:
-    if: github.repository == 'mozmeao/springfield'
+    # if: github.repository == 'mozmeao/springfield'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run PR-opening script
-        shell: bash
-        run: FLUENT_REPO_AUTH=${{ secrets.FLUENT_REPO_AUTH }} bin/open-ftl-pr.sh
+      - run: echo ${{ github.ref }}
+        #run: FLUENT_REPO_AUTH=${{ secrets.FLUENT_REPO_AUTH }} bin/open-ftl-pr.sh
