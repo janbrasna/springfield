@@ -46,13 +46,13 @@ def mobile_app(request, *args, **kwargs):
 
 
 redirectpatterns = (
-    redirect(r"^download/?$", "firefox"),
+    redirect(r"^download/?$", "firefox.all"),
     # bug 1299947, 1326383
     redirect(r"^channel/?$", firefox_channel(), cache_timeout=0, permanent=False),
     # https://github.com/mozilla/bedrock/issues/14172
     redirect(r"^browsers/mobile/app/?$", mobile_app, cache_timeout=0, permanent=False),
     # issue 222
-    redirect(r"^os/?$", "https://support.mozilla.org/products/firefox-os?redirect_source=firefox-com"),
+    redirect(r"^os/?$", "https://github.com/mozilla-b2g/b2g"),
     redirect(r"^desktop/?$", "firefox.browsers.desktop.index", permanent=False),
     redirect(r"^android/?$", "firefox.browsers.mobile.android", permanent=False),
     redirect(r"^developer/?$", "firefox.developer.index", permanent=False),
@@ -60,28 +60,18 @@ redirectpatterns = (
     redirect(r"^hello/?$", "https://support.mozilla.org/en-US/kb/hello-status?redirect_source=firefox-com"),
     redirect(r"^personal/?$", "firefox"),
     redirect(r"^choose/?$", "firefox"),
-    redirect(
-        r"^switch/?$", "https://www.mozilla.org/firefox/switch/?redirect_source=firefox-com", permanent=False
-    ),  # TODO pull this out when we port the page
+    redirect(r"^switch/?$", "firefox.browsers.compare.chrome"),
     redirect(r"^enterprise/?$", "firefox.enterprise.index", permanent=False),
     redirect(
-        r"^containers/?$", "https://www.mozilla.org/firefox/facebookcontainer/?redirect_source=firefox-com", permanent=False
-    ),  # TODO remove or amend depending on whether we port the page
-    redirect(r"^pdx/?$", "firefox", permanent=False),
+        r"^containers/?$",
+        "https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.firefox.com-containers&utm_source=www.firefox.com-containers&utm_medium=referral",
+    ),
+    redirect(r"^pdx/?$", "firefox"),
     redirect(r"^pair/?$", "https://accounts.firefox.com/pair/", permanent=False, re_flags="i"),
-    redirect(r"^(join|rejoindre)/?$", "https://www.mozilla.org/firefox/accounts/?redirect_source=join", permanent=False),
-    redirect(r"^(privacy|privatsphaere)/?$", "https://www.mozilla.org/products/?redirect_source=firefox-com", permanent=False),
+    redirect(r"^(join|rejoindre)/?$", "https://www.mozilla.org/account/?redirect_source=firefox-com"),
+    redirect(r"^(privacy|privatsphaere)/?$", "https://www.mozilla.org/products/?redirect_source=firefox-com"),
     redirect(r"^nightly/?$", "/channel/desktop/#nightly", permanent=False),
-    redirect(
-        r"^en-US/famil(y|ies)/?$",
-        "https://www.mozilla.org/firefox/family/?utm_medium=referral&utm_source=firefox.com&utm_campaign=firefox-for-families",
-        permanent=False,
-    ),
-    redirect(
-        r"^en-US/famil(y|ies)/?\?.*$",
-        "https://www.mozilla.org/firefox/family/",
-        permanent=False,
-    ),
+    redirect(r"^famil(y|ies)/?(?:\?.*)?$", "firefox"),
     # issue 260
     # bug 1001238, 1025056
     no_redirect(r"^firefox/(24\.[5678]\.\d|28\.0)/releasenotes/?$"),
@@ -105,6 +95,6 @@ redirectpatterns = (
         r"/(?P<channel>release|aurora)notes/(?P<page>[\/\w\.-]+)?$",
         "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{prod}/{vers}/{channel}notes/{page}",
     ),
-    # Bug 868182
-    redirect(r"^mobile/faq/?$", firefox_mobile_faq),
+    # bug 868182
+    redirect(r"^mobile/faq/?$", "https://support.mozilla.org/products/mobile?redirect_source=firefox-com"),
 )
