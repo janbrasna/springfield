@@ -46,7 +46,14 @@ def mobile_app(request, *args, **kwargs):
 
 
 redirectpatterns = (
+    # issue 386
     redirect(r"^download/?$", "firefox.all"),
+    redirect(r"^browsers/?$", "firefox", permanent=False),
+    redirect(r"^firefox/?$", "firefox.releases.index", permanent=False),
+    redirect(r"^monitor/?$", "https://monitor.mozilla.org/?redirect_source=firefox-com"),
+    redirect(r"^mobile/?$", "firefox.browsers.mobile.index", permanent=False),
+    redirect(r"^ios/?$", "firefox.browsers.mobile.ios", permanent=False),
+    redirect(r"^beta/?$", "/channel/desktop/#beta", permanent=False),
     # bug 1299947, 1326383
     redirect(r"^channel/?$", firefox_channel(), cache_timeout=0, permanent=False),
     # https://github.com/mozilla/bedrock/issues/14172
@@ -65,7 +72,7 @@ redirectpatterns = (
     redirect(r"^switch/?$", "firefox.browsers.compare.chrome"),
     redirect(r"^choose/?$", "firefox"),
     redirect(r"^personal/?$", "firefox"),
-    redirect(r"^famil(y|ies)/?(?:\?.*)?$", "firefox"),
+    redirect(r"^famil(y|ies)/?$", "firefox"),
     redirect(r"^pdx/?$", "firefox"),
     redirect(r"^(10|independent)/?$", "firefox.features.index"),
     redirect(r"^hello/?$", "https://support.mozilla.org/en-US/kb/hello-status?redirect_source=firefox-com"),
