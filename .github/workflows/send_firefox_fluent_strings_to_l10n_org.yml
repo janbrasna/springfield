@@ -14,7 +14,9 @@ on:
 
 jobs:
   open_l10n_pr:
-    if: github.repository == 'mozmeao/springfield'
+    if: |
+      github.repository == 'mozmeao/springfield' &&
+      (github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run')
     runs-on: ubuntu-latest
     env:
       HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}

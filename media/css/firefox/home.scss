@@ -8,12 +8,9 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/components/section-heading';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '../protocol/components/sub-navigation';
 
 // --------------------------------------------------------------------------
 // Protocol over-rides
@@ -37,6 +34,13 @@ $h-grid-lg: 80px;
 main {
     background-color: $color-white; // for IE6
     color: $color-dark-gray-30;
+
+    h1 {
+        color: $color-dark-gray-30;
+        font-family: var(--body-font-family);
+        font-size: var(--text-body-sm);
+        font-weight: normal;
+    }
 
     h2,
     h3,
@@ -436,7 +440,7 @@ button.mzp-c-cta-link {
         text-align: center;
         position: absolute;
         top: 0;
-        left: 0;
+        width: auto;
         max-height: $layout-sm;
     }
 
@@ -446,15 +450,19 @@ button.mzp-c-cta-link {
 
     @media #{$mq-md} {
         img {
-            float: left;
-            margin-left: 0;
-            margin-right: $layout-sm;
+            @include bidi(((margin-left, 0, $layout-sm), (margin-right, $layout-sm, 0)));
         }
     }
 
     @media #{$mq-lg} {
+         h3 {
+            /* decrease heading size */
+            @include font-size($title-sm-size);
+            line-height: $title-sm-line-height;
+        }
+
         li {
-            float: left;
+            @include bidi(((float, left, right),));
             width: calc(33.3% - (#{$h-grid-lg} - #{math.div($h-grid-lg, 3)}));
             margin-bottom: 0;
             padding-top: 54px + $spacing-xl;
@@ -474,6 +482,14 @@ button.mzp-c-cta-link {
             max-height: 38px;
         }
     }
+
+    @media #{$mq-xl} {
+        /* bring heading size back up for english only */
+        html[lang^='en'] & h3 {
+            @include font-size($title-md-size);
+            line-height: $title-md-line-height;
+        }
+    }
 }
 
 .c-notes {
@@ -491,6 +507,10 @@ button.mzp-c-cta-link {
 // includes t-compare, t-block, t-everyone, and t-devices block components
 
 .t-highlights {
+    .c-block {
+        padding-top: 0;
+    }
+
     .mzp-c-section-heading {
         max-width: $content-md;
     }
@@ -505,7 +525,7 @@ button.mzp-c-cta-link {
 #protection-report {
     display: none;
 
-    .state-firefox-desktop-70 & {
+    .state-firefox-desktop-136 & {
         display: block;
     }
 }
@@ -548,6 +568,8 @@ button.mzp-c-cta-link {
 // --------------------------------------------------------------------------
 
 .t-free {
+    padding-bottom: 0;
+
     .mzp-c-emphasis-box {
         @include clearfix;
     }
@@ -637,11 +659,11 @@ button.mzp-c-cta-link {
             background-position: top center;
             background-repeat: no-repeat;
             border-radius: $border-radius-sm;
-            bottom: $layout-lg;
+            bottom: $layout-sm;
             content: '';
             display: block;
             position: absolute;
-            top: $layout-lg;
+            top: $layout-md;
             width: 40%;
 
             &,
@@ -725,5 +747,29 @@ button.mzp-c-cta-link {
             opacity: 1;
             transform: scaleX(1) scaleY(1);
         }
+    }
+}
+
+// --------------------------------------------------------------------------
+// download as default checkbox
+
+.default-browser-label {
+    display: block;
+    font-weight: normal;
+    margin: 0 auto $spacing-lg;
+    padding-bottom: 0;
+    width: max-content;
+
+    &.hidden {
+        display: none;
+    }
+
+    input[type="checkbox"] {
+        margin-right: $spacing-sm;
+        vertical-align: top;
+    }
+
+    .c-intro-download & {
+        margin: 0 0 $spacing-lg;
     }
 }

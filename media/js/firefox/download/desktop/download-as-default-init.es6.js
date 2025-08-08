@@ -4,9 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-/**
- * Initialize Protocol footer.
- */
-import MzpFooter from '@mozilla-protocol/core/protocol/js/footer';
+import DownloadAsDefault from './download-as-default.es6.js';
 
-MzpFooter.init();
+DownloadAsDefault.init();

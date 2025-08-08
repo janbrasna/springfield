@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL: https://www-dev.springfield.moz.works/
+### URL: https://www-dev.springfield.moz.works/?xv=legacy
 
 # meta title, this shows as the link in search results
 # the em dash is used in English to show a change of thought and
@@ -24,7 +24,9 @@ firefox-desktop-download-get-the-browser = Get the browser that protects what’
 
 firefox-desktop-download-fast-reliable-private = Fast, reliable and private — for peace of mind online.
 
-# Obsolete string
+firefox-desktop-set-as-default = Set { -brand-name-firefox } as your default browser.
+
+# Obsolete string (expires: 2025-07-21)
 firefox-desktop-download-no-shady = No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.
 
 firefox-desktop-download-download-options = Download options and other languages
@@ -33,7 +35,7 @@ firefox-desktop-download-browser-support = { -brand-name-firefox-browser } suppo
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-do-what-you-do-v2 = Do what you do online.<br> { -brand-name-firefox-browser } has got you <strong>covered</strong>.
 
-# Obsolete string
+# Obsolete string (expires: 2025-07-21)
 firefox-desktop-download-do-what-you-do = Do what you do online.<br> { -brand-name-firefox-browser } <strong>isn’t</strong> watching.
 
 firefox-desktop-download-we-block-the-ad = We block the ad trackers. You explore the internet faster.
@@ -109,7 +111,6 @@ firefox-desktop-download-screenshots = Screenshots
 # Enhanced Tracking Protection is a feature name and so is capitalized in English
 firefox-desktop-download-enhanced-tracking-protection = Enhanced Tracking Protection (ETP)
 firefox-desktop-download-from-watching-a = From watching a web tutorial to keeping an eye on your favorite team, your video follows you while you multitask.
-firefox-desktop-download-firefox-browser = { -brand-name-firefox-browser }
 firefox-desktop-download-get-firefox-android = Get { -brand-name-firefox-browser } for <strong>{ -brand-name-android }</strong>
 firefox-desktop-download-get-firefox-ios = Get { -brand-name-firefox-browser } for <strong>{ -brand-name-ios }</strong>
 firefox-desktop-download-download-the-mobile = Download the { -brand-name-firefox } mobile browser for automatic protection on all your devices.

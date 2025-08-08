@@ -5,26 +5,38 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% set utm_params = 'utm_source=www.firefox.com&utm_medium=referral&utm_campaign=footer' %}
+{% set params = '?utm_source=www.firefox.com&utm_medium=referral&utm_campaign=footer' %}
+
+
+{% if switch('show-feedback-form') %}
+  {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
+  <aside class="m24-pencil-banner" aria-label="Feedback" data-nosnippet="true">
+    <div class="m24-pencil-banner-copy">
+      {{ ftl('footer-feedback-found-a-bug') }} <a href="https://forms.gle/oEkxTrQQthys19qG9" rel="external noopener" target="_blank">{{ ftl('footer-feedback-let-us-know') }}</a>
+    </div>
+  </aside>
+{% endif %}
 
 <footer class="mzp-c-footer" id="colophon" role="contentinfo">
   <div class="mzp-l-content">
-    <nav class="mzp-c-footer-primary" aria-label="{{ ftl('footer-landmark-label') }}">
+    <div class="mzp-c-footer-primary">
       <div class="mzp-c-footer-sections">
         <section class="mzp-c-footer-section c-footer-section-download" aria-label="{{ ftl('footer-download') }}">
           <h2 class="mzp-c-footer-heading c-footer-heading-download" data-testid="footer-heading-download">
             {{ ftl('footer-download') }}
           </h2>
-          <ul class="mzp-c-footer-list c-footer-list-download" data-testid="footer-list-download">
-             {# Download link should be locale neutral see bedrock issue 7982 #}
-            <li><a href="/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-link-position="footer" data-link-text="Download Firefox">{{ ftl('footer-download-auto') }}</a></li>
-            <li><a href="{{ url('firefox.browsers.desktop.windows') }}" data-link-position="footer" data-link-text="Windows">{{ ftl('footer-windows') }}</a></li>
-            <li><a href="{{ url('firefox.browsers.desktop.mac') }}" data-link-position="footer" data-link-text="Mac">{{ ftl('footer-mac') }}</a></li>
-            <li><a href="{{ url('firefox.browsers.mobile.ios') }}" data-link-position="footer" data-link-text="iOS">{{ ftl('footer-ios') }}</a></li>
-            <li><a href="{{ url('firefox.browsers.mobile.android') }}" data-link-position="footer" data-link-text="Android">{{ ftl('footer-android') }}</a></li>
-            <li><a href="{{ url('firefox.browsers.desktop.linux') }}" data-link-position="footer" data-link-text="Linux">{{ ftl('footer-linux') }}</a></li>
-            <li><a href="{{ url('firefox.all') }}" data-link-position="footer" data-link-text="Custom Download">{{ ftl('footer-custom-download') }}</a></li>
-          </ul>
+          <div class="c-footer-section-platforms">
+            {# Download link should be locale neutral see bedrock issue 7982 #}
+            <h3 class="c-footer-subheading"><a href="/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard" data-link-position="footer" data-link-text="Download Firefox">{{ ftl('footer-download-auto') }}</a></h3>
+            <ul class="mzp-c-footer-list c-footer-list-download" data-testid="footer-list-download">
+              <li><a href="{{ url('firefox.browsers.desktop.windows') }}" data-link-position="footer" data-link-text="Windows">{{ ftl('footer-windows') }}</a></li>
+              <li><a href="{{ url('firefox.browsers.desktop.mac') }}" data-link-position="footer" data-link-text="Mac">{{ ftl('footer-mac') }}</a></li>
+              <li><a href="{{ url('firefox.browsers.mobile.ios') }}" data-link-position="footer" data-link-text="iOS">{{ ftl('footer-ios') }}</a></li>
+              <li><a href="{{ url('firefox.browsers.mobile.android') }}" data-link-position="footer" data-link-text="Android">{{ ftl('footer-android') }}</a></li>
+              <li><a href="{{ url('firefox.browsers.desktop.linux') }}" data-link-position="footer" data-link-text="Linux">{{ ftl('footer-linux') }}</a></li>
+              <li><a href="{{ url('firefox.all') }}" data-link-position="footer" data-link-text="Custom Download">{{ ftl('footer-custom-download') }}</a></li>
+            </ul>
+          </div>
           <div class="c-footer-section-latest">
             <h3 class="c-footer-subheading">{{ ftl('footer-latest') }}</h3>
             <ul class="mzp-c-footer-list">
@@ -45,7 +57,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             {{ ftl('footer-community') }}
           </h2>
           <ul class="mzp-c-footer-list" data-testid="footer-list-community">
-            <li><a href="https://www.mozilla.org/contribute/?{{utm_params}}" data-link-position="footer" data-link-text="Contribute">{{ ftl('footer-contribute') }}</a></li>
+            <li><a href="https://connect.mozilla.org/{{params}}" data-link-position="footer" data-link-text="Connect">{{ ftl('footer-connect') }}</a></li>
+            <li><a href="https://www.mozilla.org/contribute/{{params}}" data-link-position="footer" data-link-text="Contribute">{{ ftl('footer-contribute') }}</a></li>
             <li><a href="{{ url('firefox.developer.index') }}" data-link-position="footer" data-link-text="Developer">{{ ftl('footer-developer') }}</a></li>
           </ul>
         </section>
@@ -58,10 +71,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <li><a href="{{ url('firefox.browsers.compare.index') }}" data-link-position="footer" data-link-text="Compare">{{ ftl('footer-compare') }}</a></li>
             <li><a href="{{ url('firefox.notes') }}" data-link-position="footer" data-link-text="Release Notes">{{ ftl('footer-release-notes') }}</a></li>
             <li><a href="{{ url('firefox.more.index') }}" data-link-position="footer" data-link-text="Learn">{{ ftl('footer-learn') }}</a></li>
-            <li><a href="https://support.mozilla.org/?{{utm_params}}" data-link-position="footer" data-link-text="Support">{{ ftl('footer-support') }}</a></li>
-            <li><a href="https://addons.mozilla.org/firefox/?{{utm_params}}" data-link-position="footer" data-link-text="Add ons">{{ ftl('footer-addons') }}</a></li>
-            <li><a href="https://community.mozilla.org/?{{utm_params}}" data-link-position="footer" data-link-text="Community">{{ ftl('footer-community') }}</a></li>
-            <li><a href="https://blog.mozilla.org/en/category/firefox/?{{utm_params}}" data-link-position="footer" data-link-text="Blog">{{ ftl('footer-blog') }}</a></li>
+            <li><a href="https://support.mozilla.org/{{params}}" data-link-position="footer" data-link-text="Support">{{ ftl('footer-support') }}</a></li>
+            <li><a href="https://addons.mozilla.org/firefox/{{params}}" data-link-position="footer" data-link-text="Add ons">{{ ftl('footer-addons') }}</a></li>
+            <li><a href="https://community.mozilla.org/{{params}}" data-link-position="footer" data-link-text="Community">{{ ftl('footer-community') }}</a></li>
+            <li><a href="https://blog.mozilla.org/en/category/firefox/{{params}}" data-link-position="footer" data-link-text="Blog">{{ ftl('footer-blog') }}</a></li>
           </ul>
         </section>
 
@@ -77,28 +90,33 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <li><a class="podcast" href="https://www.youtube.com/@firefox/podcasts" data-link-position="footer" data-link-text="Podcast" translate="no">Podcast<span></span></a></li>
           </ul>
         </section>
-    </nav>
-    <nav class="mzp-c-footer-secondary">
+      </div>
+      <div class="c-footer-logo">
+        <a href="{{ url('firefox') }}" data-link-position="footer" data-link-text="Firefox">{{ ftl('footer-firefox') }}</a>
+      </div>
+    </div>
+    <div class="mzp-c-footer-secondary">
       <div class="mzp-c-footer-legal">
         <ul class="mzp-c-footer-terms">
           {% if LANG == "de" %}
             {# Legal requirement in Germany see bedrock issue #14240 #}
             <li><a href="https://www.mozilla.org/de/about/legal/impressum/" data-link-position="footer" data-link-text="Impressum">Impressum</a></li>
           {% endif %}
-          <li><a href="https://www.mozilla.org/{{ LANG }}/privacy/websites/?{{ utm_params }}" data-link-position="footer" data-link-text="Privacy">{{ ftl('footer-websites-privacy-notice') }}</a></li>
-          <li><a href="https://www.mozilla.org/about/legal/terms/firefox/?{{ utm_params }}" data-link-position="footer" data-link-text="Terms of Use">{{ ftl('footer-terms-of-use') }}</a></li>
+          <li><a href="https://www.mozilla.org/{{ LANG }}/privacy/websites/{{ params }}" data-link-position="footer" data-link-text="Privacy">{{ ftl('footer-websites-privacy-notice') }}</a></li>
+          <li><a href="https://www.mozilla.org/about/legal/terms/firefox/{{ params }}" data-link-position="footer" data-link-text="Terms of Use">{{ ftl('footer-terms-of-use') }}</a></li>
           <li>
             {# Link to /privacy/websites/cookie-settings/ is a legal requirement and should not be removed. It must be present on every page (bedrock Issue 14213). #}
             <a href="{{ url('privacy.cookie-settings') }}" data-link-position="footer" data-link-text="Cookies">{{ ftl('footer-websites-cookie-policy', fallback='footer-websites-cookies') }}</a>
           </li>
-          <li><a href="https://www.mozilla.org/{{ LANG }}/about/governance/policies/participation/?{{ utm_params }}" data-link-position="footer" data-link-text="Community Participation Guidelines">{{ ftl('footer-community-participation-guidelines') }}</a></li>
-          <li><a href="https://www.mozilla.org/foundation/trademarks/policy/?{{ utm_params }}" data-link-position="footer" data-link-text="Logo Trademark Licensing">{{ ftl('footer-logo-trademark-licensing') }}</a></li>
+          <li><a href="https://www.mozilla.org/{{ LANG }}/about/governance/policies/participation/{{ params }}" data-link-position="footer" data-link-text="Community Participation Guidelines">{{ ftl('footer-community-participation-guidelines') }}</a></li>
+          <li><a href="https://www.mozilla.org/foundation/trademarks/policy/{{ params }}" data-link-position="footer" data-link-text="Logo Trademark Licensing">{{ ftl('footer-logo-trademark-licensing') }}</a></li>
         </ul>
       </div>
 
       <div class="c-footer-more">
-        <div class="c-footer-logo">
-          <a href="{{ url('firefox') }}" data-link-position="footer" data-link-text="Firefox">{{ ftl('footer-firefox') }}</a>
+        <div class="c-footer-branding">
+          <h2 class="mzp-c-footer-heading">{{ ftl('footer-powdered-by') }}</h2>
+          <p>{{ ftl('footer-putting-people') }}</p>
         </div>
         <div class="mzp-c-footer-language">
           {% include 'includes/lang-switcher.html' %}
@@ -110,6 +128,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
 
-    </nav>
+    </div>
   </div>
 </footer>

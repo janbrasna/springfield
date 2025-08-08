@@ -27,6 +27,11 @@
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}{{ ftl('firefox-desktop-download-og-desc') }}{% endblock %}
 
+{% block extra_meta %}
+  {# verification for Google Search Console, needs to be on the homepage #}
+  <meta name="google-site-verification" content="fbbClMSzypNUqdGa35C7ndilpV-mc9fErgrDRbwmVr4" />
+{% endblock %}
+
 {% block old_ie_styles %}{% endblock %}
 {% block site_css %}{% endblock %}
 {% block page_css %}{% endblock %}
@@ -34,6 +39,12 @@
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
   {{ css_bundle('protocol') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_cta=True %}
+    {% include 'includes/navigation/navigation.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block body_class %}mzp-t-firefox{% endblock %}

@@ -209,21 +209,21 @@
     },
     {
       "files": [
-        "css/firefox/home-en-us-ca.scss"
+        "css/firefox/home.scss"
       ],
-      "name": "firefox-home-en-us-ca"
+      "name": "firefox-home"
     },
         {
       "files": [
-        "css/firefox/home-en-us-ca-ie9.scss"
+        "css/firefox/home-ie9.scss"
       ],
-      "name": "firefox-home-en-us-ca-ie9"
+      "name": "firefox-home-ie9"
     },
     {
       "files": [
-        "css/firefox/home-new-refresh-ie8.scss"
+        "css/firefox/home-ie8.scss"
       ],
-      "name": "firefox-home-en-us-ca-ie8"
+      "name": "firefox-home-ie8"
     },
     {
       "files": [
@@ -327,6 +327,12 @@
     },
     {
       "files": [
+        "css/firefox/more/best-browser.scss"
+      ],
+      "name": "best-browser"
+    },
+    {
+      "files": [
         "css/firefox/more/article.scss"
       ],
       "name": "more-article"
@@ -372,6 +378,19 @@
         "js/firefox/download/desktop/download.js"
       ],
       "name": "firefox_desktop_download"
+    },
+    {
+      "files": [
+        "js/firefox/home.js"
+      ],
+      "name": "firefox-home"
+    },
+    {
+      "files": [
+        "js/firefox/download/desktop/download-as-default.es6.js",
+        "js/firefox/download/desktop/download-as-default-init.es6.js"
+      ],
+      "name": "download_as_default"
     },
     {
       "files": [
@@ -451,12 +470,6 @@
     },
     {
       "files": [
-        "js/firefox/home-en-us-ca.js"
-      ],
-      "name": "firefox-home-en-us-ca"
-    },
-    {
-      "files": [
         "js/base/fxa-form-init.es6.js"
       ],
       "name": "fxa_form"
@@ -497,7 +510,6 @@
       "files": [
         "js/base/banners/m24-pencil-banner-init.es6.js",
         "js/base/protocol/init-details.es6.js",
-        "js/base/protocol/init-footer.es6.js",
         "js/base/protocol/init-lang-switcher.es6.js",
         "js/base/protocol/protocol-sub-navigation.js",
         "js/base/base-page-init.js",

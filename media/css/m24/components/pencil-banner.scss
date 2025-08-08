@@ -42,13 +42,20 @@
 
         &:hover,
         &:focus {
-            border-color: $m24-color-green;
+            border-color: $m24-color-orange;
         }
     }
 }
 
 html[data-pencil-banner-closed="true"] {
     .m24-pencil-banner {
+        display: none;
+    }
+}
+
+// No JS
+.no-js {
+    .m24-pencil-banner-close {
         display: none;
     }
 }

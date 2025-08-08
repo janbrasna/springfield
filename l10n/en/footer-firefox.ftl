@@ -2,10 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-# An accessible label used to describe that the role of the element is the
-# primary website navigation.
-footer-landmark-label = Supplementary
-
 ## Download links for stable versions of Firefox across multiple platforms.
 
 # Section title
@@ -37,6 +33,7 @@ footer-enterprise = { -brand-name-enterprise }
 footer-community = Community
 footer-contribute = Contribute
 footer-developer = Developer
+footer-connect = Connect
 
 ## Links to resources
 
@@ -73,3 +70,14 @@ footer-language = Language
 footer-go = Go
 
 footer-firefox = { -brand-name-firefox }
+
+## Mozilla branding
+
+footer-powdered-by = Powered by { -brand-name-mozilla }
+footer-putting-people = Putting people before profits since 1998
+
+## Feedback
+
+footer-feedback-found-a-bug = Found a bug with our new website?
+# links to a Google Form that is English only
+footer-feedback-let-us-know = Let us know.

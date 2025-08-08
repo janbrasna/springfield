@@ -457,14 +457,39 @@ SUPPORTED_NONLOCALES = [
 # Paths that can exist either with or without a locale code in the URL.
 # Matches the whole URL path
 SUPPORTED_LOCALE_IGNORE = [
-    # Sitemap URLs are a good candidate here
+    "/all-urls-global.xml",  # in sitemap urls
+    "/all-urls.xml",  # in sitemap urls
+]
+
+# Pages that we don't want to be indexed by search engines.
+# Only impacts sitemap generator. If you need to disallow indexing of
+# specific URLs, add them to mozorg/templates/mozorg/robots.txt.
+NOINDEX_URLS = [
+    r"^(404|500)/",
+    r"^csrf_403/",
+    r"^cms-admin/",
+    r"^django-admin/",
+    r"^django-rq/",
+    r"^oidc/",
+    r"^\.well-known/",
+    r"^browsers/unsupported-systems/",
+    r"^download/installer-help/",
+    r"^firefox/nightly/notes/feed/$",
+    r"^landing/",
+    r"/system-requirements/$",
+    r"^thanks/$",
+    r"^analytics-tests/",
+    r"^readiness/$",
+    r"^healthz(-cron)?/$",
+    # exclude redirects
+    r"^firefox/notes/$",
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
 # or are only available in a non-default locale
 EXTRA_INDEX_URLS = {
-    "/privacy/firefox-klar/": ["de"],
-    "/about/legal/impressum/": ["de"],
+    "/features/free-pdf-editor/": ["fr"],
+    "/features/complete-pdf/": ["fr"],
 }
 
 # Pages that have different URLs for different locales, e.g.
@@ -697,6 +722,7 @@ INSTALLED_APPS = [
     "springfield.privacy",
     "springfield.releasenotes",
     "springfield.utils",
+    "springfield.sitemaps",
     # last so that redirects here will be last
     "springfield.redirects",
     # libs
@@ -849,12 +875,10 @@ FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net
 
 # Google Play and Apple App Store settings
 from .appstores import (  # noqa: E402, F401
-    AMAZON_FIREFOX_FIRE_TV_LINK,
     APPLE_APPSTORE_COUNTRY_MAP,
     APPLE_APPSTORE_FIREFOX_LINK,
     APPLE_APPSTORE_FOCUS_LINK,
     APPLE_APPSTORE_KLAR_LINK,
-    APPLE_APPSTORE_POCKET_LINK,
     APPLE_APPSTORE_VPN_LINK,
     GOOGLE_PLAY_FIREFOX_BETA_LINK,
     GOOGLE_PLAY_FIREFOX_LINK,
@@ -863,7 +887,6 @@ from .appstores import (  # noqa: E402, F401
     GOOGLE_PLAY_FIREFOX_SEND_LINK,
     GOOGLE_PLAY_FOCUS_LINK,
     GOOGLE_PLAY_KLAR_LINK,
-    GOOGLE_PLAY_POCKET_LINK,
     GOOGLE_PLAY_VPN_LINK,
     MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_DIRECT_LINK,
     MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_WEB_LINK,
