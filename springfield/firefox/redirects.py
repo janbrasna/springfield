@@ -50,16 +50,16 @@ redirectpatterns = (
     # bug 1299947, 1326383
     redirect(r"^channel/?$", firefox_channel(), cache_timeout=0, permanent=False),
     # https://github.com/mozilla/bedrock/issues/14172
-    redirect(r"^browsers/mobile/app/?$", mobile_app, cache_timeout=0, query=False, permanent=False),
+    redirect(r"^browsers/mobile/app/?$", mobile_app, cache_timeout=0, permanent=False),
     # issue 222
-    redirect(r"^os/?$", "https://support.mozilla.org/products/firefox-os?redirect_source=firefox-com", permanent=True),
+    redirect(r"^os/?$", "https://support.mozilla.org/products/firefox-os?redirect_source=firefox-com"),
     redirect(r"^desktop/?$", "firefox.browsers.desktop.index", permanent=False),
     redirect(r"^android/?$", "firefox.browsers.mobile.android", permanent=False),
     redirect(r"^developer/?$", "firefox.developer.index", permanent=False),
-    redirect(r"^(10|independent)/?$", "firefox.features.index", permanent=True),
-    redirect(r"^hello/?$", "https://support.mozilla.org/en-US/kb/hello-status?redirect_source=firefox-com", permanent=True),
-    redirect(r"^personal/?$", "firefox", permanent=True),
-    redirect(r"^choose/?$", "firefox", permanent=True),
+    redirect(r"^(10|independent)/?$", "firefox.features.index"),
+    redirect(r"^hello/?$", "https://support.mozilla.org/en-US/kb/hello-status?redirect_source=firefox-com"),
+    redirect(r"^personal/?$", "firefox"),
+    redirect(r"^choose/?$", "firefox"),
     redirect(
         r"^switch/?$", "https://www.mozilla.org/firefox/switch/?redirect_source=firefox-com", permanent=False
     ),  # TODO pull this out when we port the page
@@ -106,5 +106,5 @@ redirectpatterns = (
         "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{prod}/{vers}/{channel}notes/{page}",
     ),
     # Bug 868182
-    redirect(r"^mobile/faq/?$", firefox_mobile_faq, query=False),
+    redirect(r"^mobile/faq/?$", firefox_mobile_faq),
 )
