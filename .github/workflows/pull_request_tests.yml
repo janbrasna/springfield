@@ -9,7 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: "Build media"
+        run: |
+            npm ci
+            npm run build
       - name: "Run collectstatic"
         run: |
             docker compose run test python manage.py collectstatic --noinput
-        timeout-minutes: 5
