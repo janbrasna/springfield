@@ -11,8 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: "Build media"
         run: |
+            cp .env-dist .env
             npm ci
             npm run build
       - name: "Run collectstatic"
         run: |
-            docker compose run assets python manage.py collectstatic --noinput
+            DEV=False WAGTAIL_ENABLE_ADMIN=False docker compose run app python manage.py collectstatic --noinput
