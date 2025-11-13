@@ -5,15 +5,13 @@ on:
       - test
 
 jobs:
-  test-media:
+  test-combo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: "Build media"
+      - uses: actions/checkout@v5
+      - name: "Run Python tests (via test-ci)"
         run: |
-            cp .env-dist .env
-            npm ci
-            npm run build
-      - name: "Run collectstatic"
+            make test-ci
+      - name: "Run static collection (via release)"
         run: |
-            DEV=False WAGTAIL_ENABLE_ADMIN=False docker compose run app python manage.py collectstatic --noinput
+            docker compose run release python manage.py collectstatic --noinput
