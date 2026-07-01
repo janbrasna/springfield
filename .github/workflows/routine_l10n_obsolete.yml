@@ -6,8 +6,8 @@ on:
 jobs:
   create_issue:
     name: Create l10n cleanup issue
-    runs-on: ubuntu-latest
     if: github.repository == 'mozmeao/springfield'
+    runs-on: ubuntu-slim
     permissions:
       issues: write
     steps:
